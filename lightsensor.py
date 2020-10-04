@@ -1,4 +1,4 @@
-import smbus
+import smbus2
 import numpy as np
 from typing import Tuple
 
@@ -7,10 +7,10 @@ from typing import Tuple
 #https://github.com/adafruit/Adafruit_TCS34725/blob/master/Adafruit_TCS34725.h
 
 #bus Initialization
-bus = smbus.SMBus(2)
+bus = smbus2.SMBus(2)
 
 #LightSensor I2C_Address
-I2C_Address = 0x29
+I2C_ADDRESS = 0x29
 
 #Relevant Registers (From .h sheet)
 CD_LS = 0x14  # Clear channel data low byte 
@@ -36,7 +36,7 @@ def get_raw_color_value(ls, ms):
     lsb = read_data(ls)
     return np.int16(msb | lsb)
 
-def convert_raw_to_rgb(red: np.int16, green: np.int16, blue: np.int16, clear: np.int16) -> Tuple(float, float, float):
+def convert_raw_to_rgb(red: np.int16, green: np.int16, blue: np.int16, clear: np.int16) -> Tuple[float, float, float]:
     """
     Pass the raw values from the TCS to this function to convert to rgb values.
     Returns tuple of red, green, blue values
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     WAKE_UP_VALUE = 1
     WAKE_UP_ADDRESS = 0x01
     #Power on the Sensor
-    bus.write_byte_data(I2C_Address, WAKE_UP_ADDRESS, WAKE_UP_VALUE)
+    bus.write_byte_data(I2C_ADDRESS, WAKE_UP_ADDRESS, WAKE_UP_VALUE)
 
     while True:
         # Read the raw color data
