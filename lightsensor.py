@@ -69,4 +69,4 @@ if __name__ == "__main__":
         r, g, b = convert_raw_to_rgb(r, g, b, clear)
 
         # Print
-        print(f"Red: {r} Green: {g} Blue: {b}")
+        print("Red: {} Green: {} Blue: {}".format(r, g, b))
