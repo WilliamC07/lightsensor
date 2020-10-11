@@ -46,9 +46,9 @@ def convert_raw_to_rgb(red, green, blue, clear):
         return (0, 0, 0)
 
     return (
-        red / sum * 255.0,
-        green / sum * 255.0,
-        blue / sum * 255.0,
+        red / clear * 255.0,
+        green / clear * 255.0,
+        blue / clear * 255.0,
     )
 
 if __name__ == "__main__":
